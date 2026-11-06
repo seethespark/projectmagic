@@ -1137,3 +1137,8 @@ the menu item stays too.
 Built: the header shows *Feedback* beside the user menu, opening the same dialog as the menu
 item. On a phone the project picker shrinks to make room, so the name stays on one line, and below
 about 360px the picker gets its own row. Seen in light, dark, at 390px and at 320px.
+
+### PM66 Add Item page losing edits
+**Status:** todo · **For:** agent
+
+Add An Item loses data, the screen redraws periodically if there are unsynced edits in the same project. This causes any new work to be lost.  It is not uncommon to add two tickets at once so this problem occurrs frequently
