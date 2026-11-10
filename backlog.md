@@ -1139,6 +1139,12 @@ item. On a phone the project picker shrinks to make room, so the name stays on o
 about 360px the picker gets its own row. Seen in light, dark, at 390px and at 320px.
 
 ### PM66 Add Item page losing edits
-**Status:** in progress · **Branch:** `fix/pm66-add-item-losing-edits` · **For:** agent
+**Status:** done · **Type:** bug · **For:** agent
 
 Add An Item loses data, the screen redraws periodically if there are unsynced edits in the same project. This causes any new work to be lost.  It is not uncommon to add two tickets at once so this problem occurrs frequently
+
+Built: the periodic redraw was the layout's batch timer calling `invalidateAll()` whenever unsaved
+edits were due, which handed `new/+page.svelte` a fresh `data.values` and rebuilt `ItemForm` through
+`{#key values}`, wiping what was typed. The page now keeps the values it opened with — taken again
+only when the query changes (`?bug`, `?epic`) or a refused form is reopened — the same pattern the
+edit page already used.

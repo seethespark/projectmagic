@@ -1,10 +1,26 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { page } from '$app/state';
+	import { untrack } from 'svelte';
 	import ItemForm from '#lib/components/ItemForm.svelte';
 
 	let { data, form } = $props();
-	const values = $derived(form?.values ?? data.values);
+	// The form keeps what it opened with. A background reload (the batch timer, a sync) hands this
+	// page new data, and rebuilding the form from it would wipe what is being typed (PM66). So the
+	// values are taken again only when the query changes (?bug, ?epic), or on reopening after a refusal.
+	// svelte-ignore state_referenced_locally
+	let opened = $state.raw({ key: page.url.search, values: data.values, hadForm: false });
+	$effect.pre(() => {
+		const key = page.url.search;
+		const hasForm = !!form;
+		const o = untrack(() => opened);
+		if (key !== o.key || (o.hadForm && !hasForm)) {
+			opened = { key, values: data.values, hadForm: false };
+		} else if (hasForm !== o.hadForm) {
+			opened = { ...o, hadForm: hasForm };
+		}
+	});
+	const values = $derived(form?.values ?? opened.values);
 	// Adding commits, merges and syncs, which takes seconds: say so (PM17).
 	let adding = $state(false);
 </script>
