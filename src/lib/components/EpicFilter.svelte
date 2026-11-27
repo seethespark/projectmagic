@@ -16,7 +16,7 @@
 		>Epic
 		<select {value} onchange={(e) => onchange(e.currentTarget.value)}>
 			<option value="">any</option>
-			{#each epics as e (e.id)}<option value={e.id}>{e.id}{e.title ? ` ${e.title}` : ''}</option
+			{#each epics as e, ix (ix)}<option value={e.id}>{e.id}{e.title ? ` ${e.title}` : ''}</option
 				>{/each}
 		</select>
 	</label>

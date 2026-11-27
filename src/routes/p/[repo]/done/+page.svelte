@@ -16,7 +16,7 @@
 		Marked done in their meta lines; the agents prune these when they next tidy the backlog.
 	</p>
 	<ul>
-		{#each unpruned as d (d.id)}
+		{#each unpruned as d, ix (ix)}
 			<li id={d.id}>
 				<a href="/p/{repo}/i/{encodeURIComponent(d.id)}"><code>{d.id}</code> {@html d.titleHtml}</a>
 			</li>
@@ -30,7 +30,7 @@
 </p>
 {#if pruned.length}
 	<ul>
-		{#each pruned as d (d.id)}
+		{#each pruned as d, ix (ix)}
 			<li id={d.id}>
 				<a href="/p/{repo}/i/{encodeURIComponent(d.id)}"><code>{d.id}</code> {@html d.titleHtml}</a>
 				<span class="muted">

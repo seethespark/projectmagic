@@ -106,7 +106,7 @@
 			{#each data.sections as sec (sec.index)}
 				<optgroup label={sec.title}>
 					<option value="start:{sec.index}">Top of {sec.title}</option>
-					{#each others.filter((o) => o.section === sec.index) as o (o.id)}
+					{#each others.filter((o) => o.section === sec.index) as o, ix (ix)}
 						<option value="after:{o.id}">After {o.id} {o.title.slice(0, 50)}</option>
 					{/each}
 				</optgroup>

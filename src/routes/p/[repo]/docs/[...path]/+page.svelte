@@ -110,7 +110,7 @@
 		{#if data.toc.length}
 			<nav class="toc" aria-label="On this page">
 				<div class="label">On this page</div>
-				{#each data.toc as t (t.id)}<a class="d{t.depth}" href="#{t.id}">{t.text}</a>{/each}
+				{#each data.toc as t, ix (ix)}<a class="d{t.depth}" href="#{t.id}">{t.text}</a>{/each}
 			</nav>
 		{/if}
 	{/if}

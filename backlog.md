@@ -1158,7 +1158,9 @@ by their text or by item id, and real data can repeat both: the same health noti
 same item id twice (allowed, with an "appears more than once" warning), which also doubles its
 drift tags.
 
-Built: the lists that only display rows are keyed by position instead: the backlog page's health
-notices, the drift tags on rows and board cards, disagreements on the item and plan pages, and
-the item lists on the board, epics, branches and Overview. A repeated notice or a duplicate id
-now shows twice instead of crashing the page.
+Built: every list on the project pages keyed by something written in the backlog, plan or epics
+files is keyed by position instead: health notices, drift tags, hints, waits, meta lines,
+disagreements, section lanes, plan groups and tasks, docs headings, the epic and task pickers,
+and the item lists on the board, epics, branches, done, edit and Overview pages. Lists keyed by
+PR numbers, branch names or database ids are unchanged. A repeated notice or a duplicate id now
+shows twice instead of crashing the page.
