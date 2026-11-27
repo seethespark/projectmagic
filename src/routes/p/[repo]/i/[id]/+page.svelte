@@ -296,7 +296,7 @@
 
 			{#if it.disagreements.length || it.hints.length || it.noMeta}
 				<section class="notice">
-					{#each it.disagreements as d (d)}<p class="small">{d}</p>{/each}
+					{#each it.disagreements as d, i (i)}<p class="small">{d}</p>{/each}
 					{#each it.hints as h (h)}<p class="small">Hint: {h}</p>{/each}
 					{#if it.noMeta}<p class="small">
 							This item has no meta line, so its status is inferred.

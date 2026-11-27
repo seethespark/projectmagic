@@ -51,7 +51,7 @@
 				<a href="/p/{repo}/board?epic={e.id}">Board</a>
 			</p>
 			<ul>
-				{#each e.items as i (i.id)}
+				{#each e.items as i, n (n)}
 					<li>
 						<StatusPill status={i.status} small />
 						<a href="/p/{repo}/i/{encodeURIComponent(i.id)}"><code>{i.id}</code></a>
@@ -105,7 +105,7 @@
 					<a href={x.href}><code>{x.epic}</code></a>
 					{x.title ?? ''}
 					<ul class="nested">
-						{#each x.items as i (i.id)}
+						{#each x.items as i, n (n)}
 							<li>
 								<StatusPill status={i.status} small />
 								<a href="/p/{repo}/i/{encodeURIComponent(i.id)}"><code>{i.id}</code></a>

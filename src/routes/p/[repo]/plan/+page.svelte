@@ -91,7 +91,7 @@
 		<div class="label">Disagreements</div>
 		{#if data.disagreements.length}
 			<ul>
-				{#each data.disagreements as d (d)}<li>{d}</li>{/each}
+				{#each data.disagreements as d, i (i)}<li>{d}</li>{/each}
 			</ul>
 			<p class="muted small">
 				Shown, never resolved: the backlog and the plan are both edited by hand.

@@ -1150,10 +1150,15 @@ only when the query changes (`?bug`, `?epic`) or a refused form is reopened — 
 edit page already used.
 
 ### PM67 A backlog page crashes on duplicate list keys
-**Status:** in progress · **Type:** bug · **For:** agent · **Branch:** fix/each-key-duplicate
+**Status:** built · **Waiting:** Nick's check · **Type:** bug · **For:** agent
 
 Seen in production on 2026-11-27: one project's backlog page fails with Svelte's
 `each_key_duplicate` error while other projects open fine. Lists on the project pages were keyed
 by their text or by item id, and real data can repeat both: the same health notice twice, or the
 same item id twice (allowed, with an "appears more than once" warning), which also doubles its
 drift tags.
+
+Built: the lists that only display rows are keyed by position instead: the backlog page's health
+notices, the drift tags on rows and board cards, disagreements on the item and plan pages, and
+the item lists on the board, epics, branches and Overview. A repeated notice or a duplicate id
+now shows twice instead of crashing the page.

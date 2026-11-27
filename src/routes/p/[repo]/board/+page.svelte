@@ -154,7 +154,7 @@
 						data-status={data.columns[i]}
 						data-to={lane.section === null ? undefined : `end:${lane.section}`}
 					>
-						{#each cell as it (it.id)}
+						{#each cell as it, j (j)}
 							<a
 								class="card"
 								class:busy={moves.busy === it.id}
@@ -174,7 +174,7 @@
 									</span>
 								</div>
 								<div class="title">{@html it.titleHtml}</div>
-								{#each it.drift as d (d.label)}
+								{#each it.drift as d, i (i)}
 									<div class="drift" title={d.text.replace(/`/g, '')}>{d.label}</div>
 								{/each}
 								{#if it.waitingHtml && (it.status === 'blocked' || it.status === 'built' || it.blocked)}
