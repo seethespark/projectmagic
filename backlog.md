@@ -1148,3 +1148,12 @@ edits were due, which handed `new/+page.svelte` a fresh `data.values` and rebuil
 `{#key values}`, wiping what was typed. The page now keeps the values it opened with — taken again
 only when the query changes (`?bug`, `?epic`) or a refused form is reopened — the same pattern the
 edit page already used.
+
+### PM67 A backlog page crashes on duplicate list keys
+**Status:** in progress · **Type:** bug · **For:** agent · **Branch:** fix/each-key-duplicate
+
+Seen in production on 2026-11-27: one project's backlog page fails with Svelte's
+`each_key_duplicate` error while other projects open fine. Lists on the project pages were keyed
+by their text or by item id, and real data can repeat both: the same health notice twice, or the
+same item id twice (allowed, with an "appears more than once" warning), which also doubles its
+drift tags.
