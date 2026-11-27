@@ -33,7 +33,7 @@
 				</td>
 				<td>
 					{#if b.items.length}
-						{#each b.items as it, i (it.id)}{i ? ', ' : ''}<a
+						{#each b.items as it, i (i)}{i ? ', ' : ''}<a
 								href="/p/{repo}/i/{encodeURIComponent(it.id)}"><code>{it.id}</code> {it.title}</a
 							>{/each}
 					{:else if b.tasks.length}

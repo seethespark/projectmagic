@@ -19,7 +19,7 @@
 					>pending</span
 				>{/if}
 			{#if item.blocked && item.status !== 'blocked'}<span class="tag warn">blocked</span>{/if}
-			{#each item.drift as d (d.label)}<span class="tag warn" title={d.text.replace(/`/g, '')}
+			{#each item.drift as d, i (i)}<span class="tag warn" title={d.text.replace(/`/g, '')}
 					>{d.label}</span
 				>{/each}
 			{#if item.type === 'bug'}<span class="tag bug" title="Type: bug">bug</span>{/if}

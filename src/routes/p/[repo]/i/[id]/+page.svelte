@@ -238,7 +238,7 @@
 				{#if it.comment}<p class="small">
 						A comment of {it.comment} is waiting for an agent to read it.
 					</p>{/if}
-				{#each it.waits as w (w.ref)}
+				{#each it.waits as w, ix (ix)}
 					<p class="small">
 						{#if w.href}<a href={w.href}><code>{w.ref}</code></a>{:else}<code>{w.ref}</code>{/if}
 						{#if w.status}<StatusPill status={w.status} small />{#if w.title}
@@ -258,7 +258,7 @@
 						Proposed by {it.inferred.model} from this item’s text. Add a meta line to replace it.
 					</p>
 				{/if}
-				{#each it.drift as d (d.ask)}
+				{#each it.drift as d, ix (ix)}
 					<div class="drift small">
 						<p>{@html d.html}</p>
 						{#if page.data.project.canEdit}
@@ -296,8 +296,8 @@
 
 			{#if it.disagreements.length || it.hints.length || it.noMeta}
 				<section class="notice">
-					{#each it.disagreements as d (d)}<p class="small">{d}</p>{/each}
-					{#each it.hints as h (h)}<p class="small">Hint: {h}</p>{/each}
+					{#each it.disagreements as d, i (i)}<p class="small">{d}</p>{/each}
+					{#each it.hints as h, ix (ix)}<p class="small">Hint: {h}</p>{/each}
 					{#if it.noMeta}<p class="small">
 							This item has no meta line, so its status is inferred.
 						</p>{/if}
@@ -308,7 +308,7 @@
 				<section>
 					<div class="label">Meta line</div>
 					<dl>
-						{#each it.meta as e (e.key)}<dt>{e.key}</dt>
+						{#each it.meta as e, ix (ix)}<dt>{e.key}</dt>
 							<dd>{@html e.html}</dd>{/each}
 					</dl>
 				</section>
@@ -348,14 +348,14 @@
 							{p.title} <span class="muted">{p.state.toLowerCase()}{p.draft ? ', draft' : ''}</span>
 						</li>
 					{/each}
-					{#each it.elsewhere.waitedOnBy as w (`${w.repo}:${w.id}`)}
+					{#each it.elsewhere.waitedOnBy as w, ix (ix)}
 						<li>
 							<a href={w.href}><code>{w.repo}:{w.id}</code></a>
 							<StatusPill status={w.status} small />
 							<span class="muted">waits on this: {w.title}</span>
 						</li>
 					{/each}
-					{#each it.tasks as t (t.number)}
+					{#each it.tasks as t, ix (ix)}
 						<li>
 							<a href="/p/{repo}/plan#task-{t.number}">Plan task <code>{t.number}</code></a>
 							<StatusPill status={t.status} small /> <span class="muted">{@html t.titleHtml}</span>

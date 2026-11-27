@@ -98,7 +98,7 @@
 		<span class="label">Epic</span>
 		<input name="epic" list="epics" bind:value={v.epic} placeholder="none" autocomplete="off" />
 		<datalist id="epics"
-			>{#each epics as e (e.id)}<option value={e.id}>{e.title ?? ''}</option>{/each}</datalist
+			>{#each epics as e, ix (ix)}<option value={e.id}>{e.title ?? ''}</option>{/each}</datalist
 		>
 		<small class="muted">Pick an epic, or type a new name to start one. Empty is none.</small>
 	</label>
@@ -118,7 +118,7 @@
 		<span class="label">Plan tasks</span>
 		<input name="plan" list="tasks" bind:value={v.plan} placeholder="46, 49" autocomplete="off" />
 		<datalist id="tasks"
-			>{#each tasks as t (t.number)}<option value={t.number}>{t.title}</option>{/each}</datalist
+			>{#each tasks as t, ix (ix)}<option value={t.number}>{t.title}</option>{/each}</datalist
 		>
 	</label>
 	<label class="wide">

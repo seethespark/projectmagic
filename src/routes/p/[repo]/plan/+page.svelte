@@ -21,7 +21,7 @@
 
 <div class="layout">
 	<div>
-		{#each data.groups as g (g.title)}
+		{#each data.groups as g, ix (ix)}
 			{@const complete = g.done === g.total}
 			<details class="group" open={!complete || undefined}>
 				<summary>
@@ -32,7 +32,7 @@
 					>
 				</summary>
 				<ol>
-					{#each g.tasks as t (t.number)}
+					{#each g.tasks as t, ix (ix)}
 						<li id="task-{t.number}" class:next={t.number === data.next}>
 							<code class="num">{t.number}</code>
 							<div class="text">
@@ -40,7 +40,7 @@
 								{#if t.noteHtml}<div class="note">{@html t.noteHtml}</div>{/if}
 								{#if t.items.length}
 									<div class="chips">
-										{#each t.items as id (id)}<a
+										{#each t.items as id, ix (ix)}<a
 												class="chip"
 												href="/p/{repo}/i/{encodeURIComponent(id)}">{id}</a
 											>{/each}
@@ -91,7 +91,7 @@
 		<div class="label">Disagreements</div>
 		{#if data.disagreements.length}
 			<ul>
-				{#each data.disagreements as d (d)}<li>{d}</li>{/each}
+				{#each data.disagreements as d, i (i)}<li>{d}</li>{/each}
 			</ul>
 			<p class="muted small">
 				Shown, never resolved: the backlog and the plan are both edited by hand.

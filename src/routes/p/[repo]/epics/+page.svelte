@@ -18,7 +18,7 @@
 	that name it with <code>Epic: {repo}:EP3</code>. Counts include items that have shipped.
 </p>
 
-{#each data.epics as e (e.id)}
+{#each data.epics as e, ix (ix)}
 	<section id={e.id}>
 		<h2>
 			{#if e.hasItem}<a href="/p/{repo}/i/{e.id}"><code>{e.id}</code></a>{:else}<code>{e.id}</code
@@ -51,21 +51,21 @@
 				<a href="/p/{repo}/board?epic={e.id}">Board</a>
 			</p>
 			<ul>
-				{#each e.items as i (i.id)}
+				{#each e.items as i, n (n)}
 					<li>
 						<StatusPill status={i.status} small />
 						<a href="/p/{repo}/i/{encodeURIComponent(i.id)}"><code>{i.id}</code></a>
 						{@html i.titleHtml}
 					</li>
 				{/each}
-				{#each e.shipped as d (d.id)}
+				{#each e.shipped as d, ix (ix)}
 					<li>
 						<StatusPill status="done" small />
 						<a href="/p/{repo}/done#{d.id}"><code>{d.id}</code></a>
 						{d.title} <span class="muted small">shipped</span>
 					</li>
 				{/each}
-				{#each e.elsewhere as m (`${m.repo}:${m.id}`)}
+				{#each e.elsewhere as m, ix (ix)}
 					<li>
 						<StatusPill status={m.status} small />
 						<a href={m.href}><code>{m.repo}:{m.id}</code></a>
@@ -100,12 +100,12 @@
 	<section>
 		<h2>In other repositories’ epics</h2>
 		<ul>
-			{#each data.elsewhereEpics as x (x.epic)}
+			{#each data.elsewhereEpics as x, ix (ix)}
 				<li>
 					<a href={x.href}><code>{x.epic}</code></a>
 					{x.title ?? ''}
 					<ul class="nested">
-						{#each x.items as i (i.id)}
+						{#each x.items as i, n (n)}
 							<li>
 								<StatusPill status={i.status} small />
 								<a href="/p/{repo}/i/{encodeURIComponent(i.id)}"><code>{i.id}</code></a>

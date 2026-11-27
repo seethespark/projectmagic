@@ -125,7 +125,7 @@
 				<div class="block">
 					<div class="label">Waiting on you · {c.waitingCount}</div>
 					<ul class="waiting">
-						{#each c.waiting as w (w.id)}
+						{#each c.waiting as w, i (i)}
 							<li>
 								<a href="/p/{c.repo}/i/{w.id}"><code>{w.id}</code> {w.title}</a>
 								<StatusPill status={w.status} small />
@@ -163,8 +163,8 @@
 									<code>{b.name}</code>
 									{#if b.items.length}
 										<span
-											>→ {#each b.items as it, i (it.id)}{i ? ', ' : ''}<a
-													href="/p/{c.repo}/i/{it.id}"><code>{it.id}</code> {it.title}</a
+											>→ {#each b.items as it, i (i)}{i ? ', ' : ''}<a href="/p/{c.repo}/i/{it.id}"
+													><code>{it.id}</code> {it.title}</a
 												>{/each}</span
 										>
 									{:else if b.inferred}

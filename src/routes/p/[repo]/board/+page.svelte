@@ -141,7 +141,7 @@
 			</div>
 		{/each}
 	</div>
-	{#each lanes as lane (lane.title)}
+	{#each lanes as lane, ix (ix)}
 		<details open class="lane">
 			<summary
 				>{lane.title}
@@ -154,7 +154,7 @@
 						data-status={data.columns[i]}
 						data-to={lane.section === null ? undefined : `end:${lane.section}`}
 					>
-						{#each cell as it (it.id)}
+						{#each cell as it, j (j)}
 							<a
 								class="card"
 								class:busy={moves.busy === it.id}
@@ -174,7 +174,7 @@
 									</span>
 								</div>
 								<div class="title">{@html it.titleHtml}</div>
-								{#each it.drift as d (d.label)}
+								{#each it.drift as d, ix (ix)}
 									<div class="drift" title={d.text.replace(/`/g, '')}>{d.label}</div>
 								{/each}
 								{#if it.waitingHtml && (it.status === 'blocked' || it.status === 'built' || it.blocked)}
@@ -196,7 +196,7 @@
 				{#each data.columns as c (c)}
 					<div class="cell">
 						{#if c === 'done'}
-							{#each data.shipped as d (d.id)}
+							{#each data.shipped as d, ix (ix)}
 								<a class="card" href="/p/{repo}/done#{d.id}">
 									<div class="top"><span class="id">{d.id}</span></div>
 									<div class="title">{d.title}</div>

@@ -181,18 +181,18 @@
 		<details class="health" id="health">
 			<summary>Health: {plural(notices, 'notice')}</summary>
 			<ul>
-				{#each h.disagreements as d (d)}<li><strong>Disagreement:</strong> {d}</li>{/each}
-				{#each h.warnings as w (w.line + w.message)}<li>
+				{#each h.disagreements as d, i (i)}<li><strong>Disagreement:</strong> {d}</li>{/each}
+				{#each h.warnings as w, i (i)}<li>
 						<strong>Backlog line {w.line}:</strong>
 						{w.message}
 					</li>{/each}
-				{#each h.dangling as d (d)}<li><strong>Dangling reference:</strong> {d}</li>{/each}
-				{#each h.unknownTasks as t (t)}<li>
+				{#each h.dangling as d, i (i)}<li><strong>Dangling reference:</strong> {d}</li>{/each}
+				{#each h.unknownTasks as t, i (i)}<li>
 						<strong>Plan task {t}:</strong> its status cell doesn’t start with a known word
 					</li>{/each}
-				{#each h.configWarnings as c (c)}<li><strong>.projectmagic.yml:</strong> {c}</li>{/each}
-				{#each h.assignees as a (a)}<li><strong>For:</strong> {a}</li>{/each}
-				{#each h.epics as x (x)}<li><strong>Epic:</strong> {x}</li>{/each}
+				{#each h.configWarnings as c, i (i)}<li><strong>.projectmagic.yml:</strong> {c}</li>{/each}
+				{#each h.assignees as a, i (i)}<li><strong>For:</strong> {a}</li>{/each}
+				{#each h.epics as x, i (i)}<li><strong>Epic:</strong> {x}</li>{/each}
 			</ul>
 			{#if h.notes.length}<p class="muted small">
 					Notes (headings without an id): {h.notes.join(' · ')}
